@@ -20,7 +20,7 @@ using ApiApp.Results;
 namespace ApiApp.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [RoutePrefix("Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";

@@ -229,9 +229,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\CoreContext\201507280302112_Initial.cs" />
-    <Compile Include="Migrations\CoreContext\201507280302112_Initial.Designer.cs">
-      <DependentUpon>201507280302112_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\CoreContext\201507280342235_InitialCreate.cs" />
+    <Compile Include="Migrations\CoreContext\201507280342235_InitialCreate.Designer.cs">
+      <DependentUpon>201507280342235_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507280344461_FixAwardReferences.cs" />
+    <Compile Include="Migrations\CoreContext\201507280344461_FixAwardReferences.Designer.cs">
+      <DependentUpon>201507280344461_FixAwardReferences.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CoreContext\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -324,8 +328,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\CoreContext\201507280302112_Initial.resx">
-      <DependentUpon>201507280302112_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\CoreContext\201507280342235_InitialCreate.resx">
+      <DependentUpon>201507280342235_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507280344461_FixAwardReferences.resx">
+      <DependentUpon>201507280344461_FixAwardReferences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

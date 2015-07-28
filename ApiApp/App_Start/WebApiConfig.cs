@@ -3,6 +3,8 @@ using Microsoft.Owin.Security.OAuth;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 using ApiApp.Models;
+using System.Web.OData.Routing.Conventions;
+using System.Web.OData.Routing;
 
 namespace ApiApp
 {
@@ -18,23 +20,28 @@ namespace ApiApp
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-
             // OData configuration
-            ODataModelBuilder builder = new ODataModelBuilder();
+            ODataModelBuilder builder = new ODataConventionModelBuilder();
 
-            builder.EntitySet<Team>("Teams").EntityType.HasKey(t => t.Number);
+            builder.EntitySet<Team>("Teams");
+            // Add additional entity sets
+
+            var model = builder.GetEdmModel();
+            var conventions = ODataRoutingConventions.CreateDefaultWithAttributeRouting(config, model);
+            // Add additional routing conventions
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
-                routePrefix: "odata",
-                model: builder.GetEdmModel());
+                routePrefix: null,
+                model: model,
+                routingConventions: conventions,
+                pathHandler: new DefaultODataPathHandler());
 
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
     }
 }

@@ -22,17 +22,13 @@ namespace ApiApp.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Award>().HasRequired(a => a.Event)
-                .WithMany(e => e.Awards);
+                .WithMany(e => e.Awards)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Award>()
                 .HasMany(a => a.QualifiesFor)
                 .WithMany();
-
-            modelBuilder.Entity<Award>()
-                .HasOptional(a => a.QualifiesFor)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-
+            
             base.OnModelCreating(modelBuilder);
         }
     }
