@@ -223,6 +223,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -236,6 +237,14 @@
     <Compile Include="Migrations\CoreContext\201507280344461_FixAwardReferences.cs" />
     <Compile Include="Migrations\CoreContext\201507280344461_FixAwardReferences.Designer.cs">
       <DependentUpon>201507280344461_FixAwardReferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507281919202_FixEventVenueAndContact.cs" />
+    <Compile Include="Migrations\CoreContext\201507281919202_FixEventVenueAndContact.Designer.cs">
+      <DependentUpon>201507281919202_FixEventVenueAndContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507281929095_AddEventVenueCity.cs" />
+    <Compile Include="Migrations\CoreContext\201507281929095_AddEventVenueCity.Designer.cs">
+      <DependentUpon>201507281929095_AddEventVenueCity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CoreContext\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -333,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CoreContext\201507280344461_FixAwardReferences.resx">
       <DependentUpon>201507280344461_FixAwardReferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507281919202_FixEventVenueAndContact.resx">
+      <DependentUpon>201507281919202_FixEventVenueAndContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507281929095_AddEventVenueCity.resx">
+      <DependentUpon>201507281929095_AddEventVenueCity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

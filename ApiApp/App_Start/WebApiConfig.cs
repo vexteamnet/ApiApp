@@ -24,6 +24,7 @@ namespace ApiApp
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 
             builder.EntitySet<Team>("Teams");
+            builder.EntitySet<Event>("Events");
             // Add additional entity sets
 
             var model = builder.GetEdmModel();

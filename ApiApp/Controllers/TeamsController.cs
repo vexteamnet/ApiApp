@@ -26,9 +26,7 @@ namespace ApiApp.Controllers
         public IHttpActionResult GetTeam([FromODataUri] string number)
         {
             if (!TeamExists(number))
-            {
                 return NotFound();
-            }
 
             return Ok(SingleResult.Create(db.Teams.Where(t => t.Number == number)));
         }
