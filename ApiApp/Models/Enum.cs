@@ -17,4 +17,13 @@ namespace ApiApp.Models
         VRC,
         VEXU
     }
+
+    public enum Round
+    {
+        Practice,
+        Qualification,
+        QuarterFinals,
+        SemiFinals,
+        Finals
+    }
 }

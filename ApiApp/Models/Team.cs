@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ApiApp.Models
 {
     public class Team
     {
-        public const string REGEX = @"^([1-9]\d{0,3}[A-Z]{0,1}|[A-Z]{1,4}\d{0,1})$";
+        public const string NUMREGEX = @"^([1-9]\d{0,3}[A-Z]{0,1}|[A-Z]{1,4}\d{0,1})$";
+        public const int NUMLENGTH = 5;
 
-        [Key, Required, MaxLength(5), RegularExpression(REGEX)]
+        [Key, Required, MaxLength(NUMLENGTH), RegularExpression(NUMREGEX)]
         public string Number { get; set; }
 
         public string Name { get; set; }

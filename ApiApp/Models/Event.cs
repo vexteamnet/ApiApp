@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ApiApp.Models
 {
     public class Event
     {
-        public const string REGEX = @"^RE-(VRC|VEXU|VIQC)-[0,1]\d-\d{4}$";
+        public const string SKUREGEX = @"^RE-(VRC|VEXU|VIQC)-[0,1]\d-\d{4}$";
+        public const int SKULENGTH = 17;
 
-        [Key, Required, MaxLength(17), RegularExpression(REGEX)]
+        [Key, Required, MaxLength(SKULENGTH), RegularExpression(SKUREGEX)]
         public string Sku { get; set; }
 
         public string Name { get; set; }
@@ -41,5 +43,9 @@ namespace ApiApp.Models
         }
 
         public string Agenda { get; set; }
+
+        public virtual ICollection<Division> Divisions { get; set; }
+
+        public virtual ICollection<Award> Awards { get; set; }
     }
 }
