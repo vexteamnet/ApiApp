@@ -1,12 +1,12 @@
 namespace ApiApp.Migrations.CoreContext
 {
-    using Models;
+    using VexTeamNetwork.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ApiApp.Models.CoreContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CoreContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace ApiApp.Migrations.CoreContext
             MigrationsDirectory = @"Migrations\CoreContext";
         }
 
-        protected override void Seed(ApiApp.Models.CoreContext context)
+        protected override void Seed(CoreContext context)
         {
             context.Teams.AddOrUpdate(
                 new Team { Number = "7701", City = "Zionsville", Country = "United States", IsRegistered = false, Level = Level.HighSchool, Name = "Steel Eagle I", Organization = "Zionsville Robotics", Program = Program.VRC, Region = "Indiana" },

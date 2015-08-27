@@ -48,6 +48,9 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CoreModels">
+      <HintPath>..\..\CoreModels\CoreModels\bin\Release\CoreModels.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -77,8 +80,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.OData.5.6.0\lib\net45\System.Web.OData.dll</HintPath>
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.OData.5.7.0-beta\lib\net45\System.Web.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -223,10 +230,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DivisionsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Conventions\HttpControllerSelector.cs" />
+    <Compile Include="Conventions\NavigationIndexRoutingConvention.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,18 +256,30 @@
     <Compile Include="Migrations\CoreContext\201507281929095_AddEventVenueCity.Designer.cs">
       <DependentUpon>201507281929095_AddEventVenueCity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CoreContext\201507301835484_FixTeamMaxLength.cs" />
+    <Compile Include="Migrations\CoreContext\201507301835484_FixTeamMaxLength.Designer.cs">
+      <DependentUpon>201507301835484_FixTeamMaxLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507310101417_AllowEventDateTimeNulls.cs" />
+    <Compile Include="Migrations\CoreContext\201507310101417_AllowEventDateTimeNulls.Designer.cs">
+      <DependentUpon>201507310101417_AllowEventDateTimeNulls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507310237427_AllowMatchDateTimeNulls.cs" />
+    <Compile Include="Migrations\CoreContext\201507310237427_AllowMatchDateTimeNulls.Designer.cs">
+      <DependentUpon>201507310237427_AllowMatchDateTimeNulls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507311650319_AddReplayMatch.cs" />
+    <Compile Include="Migrations\CoreContext\201507311650319_AddReplayMatch.Designer.cs">
+      <DependentUpon>201507311650319_AddReplayMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.cs" />
+    <Compile Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.Designer.cs">
+      <DependentUpon>201507311716378_RemoveMatchReplayForIncreasedRounds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CoreContext\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Award.cs" />
-    <Compile Include="Models\CoreContext.cs" />
-    <Compile Include="Models\Division.cs" />
-    <Compile Include="Models\Enum.cs" />
-    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Match.cs" />
-    <Compile Include="Models\Skills.cs" />
-    <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -348,6 +370,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CoreContext\201507281929095_AddEventVenueCity.resx">
       <DependentUpon>201507281929095_AddEventVenueCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507301835484_FixTeamMaxLength.resx">
+      <DependentUpon>201507301835484_FixTeamMaxLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507310101417_AllowEventDateTimeNulls.resx">
+      <DependentUpon>201507310101417_AllowEventDateTimeNulls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507310237427_AllowMatchDateTimeNulls.resx">
+      <DependentUpon>201507310237427_AllowMatchDateTimeNulls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507311650319_AddReplayMatch.resx">
+      <DependentUpon>201507311650319_AddReplayMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.resx">
+      <DependentUpon>201507311716378_RemoveMatchReplayForIncreasedRounds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

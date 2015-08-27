@@ -2,9 +2,12 @@
 using Microsoft.Owin.Security.OAuth;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
-using ApiApp.Models;
+using VexTeamNetwork.Models;
 using System.Web.OData.Routing.Conventions;
 using System.Web.OData.Routing;
+using ApiApp.Conventions;
+using Microsoft.OData.Edm.Library;
+using System.Web.Http.Dispatcher;
 
 namespace ApiApp
 {
@@ -13,6 +16,7 @@ namespace ApiApp
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.EnableSystemDiagnosticsTracing();
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
@@ -23,13 +27,38 @@ namespace ApiApp
             // OData configuration
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 
-            builder.EntitySet<Team>("Teams");
-            builder.EntitySet<Event>("Events");
+            builder.Namespace = typeof(Team).Namespace;
+
+            builder.EntitySet<Team>("Teams")
+                .EntityType
+                    .HasKey(t => t.Number);
+            builder.EntitySet<Event>("Events")
+                .EntityType
+                    .HasKey(e => e.Sku)
+                    .ContainsMany(e => e.Divisions);
+            builder.EntityType<Division>()                
+                    .HasKey(d => d.EventSku)
+                    .HasKey(d => d.Name);
             // Add additional entity sets
 
+
             var model = builder.GetEdmModel();
+            /*
+            var events = (EdmEntitySet)model.EntityContainer.FindEntitySet("Events");
+            var divisions = (EdmEntitySet)model.EntityContainer.FindEntitySet("Divisions");
+            var divisionsProperty = new EdmNavigationPropertyInfo
+            {
+                TargetMultiplicity = Microsoft.OData.Edm.EdmMultiplicity.Many,
+                Target = (EdmEntityType)model.FindDeclaredType(typeof(Division).FullName),
+                ContainsTarget = true,
+                OnDelete = Microsoft.OData.Edm.EdmOnDeleteAction.Cascade,
+                Name = "Divisions"
+            };
+            events.AddNavigationTarget(((EdmEntityType)model.FindDeclaredType(typeof(Event).FullName)).AddUnidirectionalNavigation(divisionsProperty), events);
+            */
             var conventions = ODataRoutingConventions.CreateDefaultWithAttributeRouting(config, model);
             // Add additional routing conventions
+            conventions.Insert(0, new NavigationIndexRoutingConvention());
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
@@ -43,6 +72,10 @@ namespace ApiApp
                 routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            config.Services.Replace(typeof(IHttpControllerSelector), new HttpControllerSelector(config));
+            //config.Services.Replace(typeof())
         }
     }
 }
