@@ -1,44 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.OData;
-using System.Web.OData.Routing;
 using VexTeamNetwork.Models;
 
 namespace ApiApp.Controllers
 {
-    //[ODataRoutePrefix("Events({sku})/Divisions")]
-    public partial class EventsController : ODataController
+    [RoutePrefix("Events/{sku}/Divisions")]
+    public class DivisionsController : ApiController
     {
-        // private CoreContext db = new CoreContext();
+        private CoreContext db = new CoreContext();
 
-        [EnableQuery(PageSize = 200)/*, ODataRoute("Events({sku})/Divisions"),*/ ResponseType(typeof(IQueryable<Division>))]
-        public IHttpActionResult GetDivisions([FromODataUri] string sku)
+        public DivisionsController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
+
+        [ResponseType(typeof(IQueryable<Division>)), EnableQuery(PageSize = 100), Route("")]
+        public IHttpActionResult Get([FromUri] string sku)
         {
             return Ok(db.Divisions.Where(d => d.EventSku == sku));
         }
 
-        [EnableQuery(PageSize = 200)/*, ODataRoute("Events({sku})/Divisions({name})"),*/ ResponseType(typeof(SingleResult<Division>))]
-        public IHttpActionResult GetDivision([FromODataUri] string sku, [FromODataUri] string name)
+        [ResponseType(typeof(SingleResult<Division>)), EnableQuery, Route("{id}")]
+        public IHttpActionResult GetDivision([FromUri] string sku, string id)
         {
-            return Ok(SingleResult.Create(db.Divisions.Select(d => d.EventSku == sku && d.Name == name)));
+            return Ok(SingleResult.Create(db.Divisions.Where(d => d.EventSku == sku && d.Name == id)));
         }
-
-        bool DivisionExists(string sku, string name)
-        {
-            return db.Divisions.Any(d => d.EventSku == sku && d.Name == name);
-        }
-
-        /*
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing) db.Dispose();
-            base.Dispose(disposing);
-        }
-        */
     }
 }

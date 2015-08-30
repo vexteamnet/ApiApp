@@ -230,13 +230,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AwardsController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Conventions\HttpControllerSelector.cs" />
-    <Compile Include="Conventions\NavigationIndexRoutingConvention.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -275,6 +274,10 @@
     <Compile Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.cs" />
     <Compile Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.Designer.cs">
       <DependentUpon>201507311716378_RemoveMatchReplayForIncreasedRounds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CoreContext\201508272005537_FixEnums.cs" />
+    <Compile Include="Migrations\CoreContext\201508272005537_FixEnums.Designer.cs">
+      <DependentUpon>201508272005537_FixEnums.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CoreContext\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -385,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CoreContext\201507311716378_RemoveMatchReplayForIncreasedRounds.resx">
       <DependentUpon>201507311716378_RemoveMatchReplayForIncreasedRounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201508272005537_FixEnums.resx">
+      <DependentUpon>201508272005537_FixEnums.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
