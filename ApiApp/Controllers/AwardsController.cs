@@ -47,11 +47,25 @@ namespace ApiApp.Controllers
 
         [Route("Events/{sku}/Awards/{team}"), Route("Teams/{team}/Awards/{sku}")]
         [ResponseType(typeof(IQueryable<Award>)), EnableQuery]
-        public IHttpActionResult GetAwards([FromUri] string sku, [FromUri] string team)
+        public IHttpActionResult GetAwards([FromUri] string sku, [FromUri] string team, [FromUri] DateTime? start = null, [FromUri] DateTime? end = null, [FromUri] string season = null)
         {
             if (!db.Awards.Any(a => a.EventSku == sku && a.TeamNumber == team))
                 return NotFound();
-            return Ok(db.Awards.Include("QualifiesFor").Where(a => a.EventSku == sku && a.TeamNumber == team));
+
+            if(!string.IsNullOrEmpty(season) && db.Seasons.Any(s => s.Name == season))
+            {
+                var _season = db.Seasons.Where(s => s.Name == season).Single();
+                start = _season.Start;
+                end = _season.End;
+            }
+
+            var result = db.Awards.Include(nameof(Award.QualifiesFor)).Where(a => a.EventSku == sku && a.TeamNumber == team);
+            if (start != null)
+                throw new NotImplementedException("Start/end parameters not yet implemented on any controller.");
+            if (end != null)
+                throw new NotImplementedException("Start/end parameters not yet implemented on any controller.");
+
+            return Ok(result);
         }
 
         [Route("Events/{sku}/Awards/{team}"), Route("Teams/{team}/Awards/{sku}")]
