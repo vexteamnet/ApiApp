@@ -1,17 +1,16 @@
-namespace ApiApp.Migrations.CoreContext
+namespace ApiApp.Migrations.ApplicationDbContext
 {
-    using VexTeamNetwork.Models;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CoreContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApiApp.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"Migrations\CoreContext";
+            MigrationsDirectory = @"Migrations\ApplicationDbContext";
         }
 
-        protected override void Seed(CoreContext context)
+        protected override void Seed(ApiApp.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

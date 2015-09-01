@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace ApiApp.Models
 {
@@ -25,7 +27,13 @@ namespace ApiApp.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("id");
+            base.OnModelCreating(modelBuilder);
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

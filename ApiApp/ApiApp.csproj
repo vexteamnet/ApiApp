@@ -241,6 +241,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201509011927474_Initial.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201509011927474_Initial.Designer.cs">
+      <DependentUpon>201509011927474_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201509011929396_ChangeSchema.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201509011929396_ChangeSchema.Designer.cs">
+      <DependentUpon>201509011929396_ChangeSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
     <Compile Include="Migrations\CoreContext\201507280342235_InitialCreate.cs" />
     <Compile Include="Migrations\CoreContext\201507280342235_InitialCreate.Designer.cs">
       <DependentUpon>201507280342235_InitialCreate.cs</DependentUpon>
@@ -368,6 +377,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201509011927474_Initial.resx">
+      <DependentUpon>201509011927474_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201509011929396_ChangeSchema.resx">
+      <DependentUpon>201509011929396_ChangeSchema.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CoreContext\201507280342235_InitialCreate.resx">
       <DependentUpon>201507280342235_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
