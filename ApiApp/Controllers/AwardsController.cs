@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ApiApp.Models.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.OData;
-using VexTeamNetwork.Models;
 
 namespace ApiApp.Controllers
 {

@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.OData;
-using VexTeamNetwork.Models;
+using ApiApp.Models.Core;
 
 namespace ApiApp.Controllers
 {

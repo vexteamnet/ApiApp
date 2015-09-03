@@ -1,13 +1,6 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
-using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
-using VexTeamNetwork.Models;
-using System.Web.OData.Routing.Conventions;
-using System.Web.OData.Routing;
-using Microsoft.OData.Edm.Library;
-using System.Web.Http.Dispatcher;
-using System.Web;
 
 namespace ApiApp
 {

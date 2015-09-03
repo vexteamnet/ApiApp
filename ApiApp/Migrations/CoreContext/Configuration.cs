@@ -1,6 +1,6 @@
 namespace ApiApp.Migrations.CoreContext
 {
-    using VexTeamNetwork.Models;
+    using Models.Core;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CoreContext>
