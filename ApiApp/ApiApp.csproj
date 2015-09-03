@@ -76,6 +76,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -299,17 +300,21 @@
     <Compile Include="Migrations\CoreContext\201509030355145_UpdateToInternalModels.Designer.cs">
       <DependentUpon>201509030355145_UpdateToInternalModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CoreContext\201509030521446_MakeMatchTeam3SitOptional.cs" />
+    <Compile Include="Migrations\CoreContext\201509030521446_MakeMatchTeam3SitOptional.Designer.cs">
+      <DependentUpon>201509030521446_MakeMatchTeam3SitOptional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CoreContext\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Core\Award.cs" />
     <Compile Include="Models\Core\CoreContext.cs" />
+    <Compile Include="Models\Core\CoreDb.cs" />
     <Compile Include="Models\Core\Division.cs" />
     <Compile Include="Models\Core\Enum.cs" />
     <Compile Include="Models\Core\Event.cs" />
     <Compile Include="Models\Core\Link.cs" />
     <Compile Include="Models\Core\Match.cs" />
-    <Compile Include="Models\Core\Resource.cs" />
     <Compile Include="Models\Core\Season.cs" />
     <Compile Include="Models\Core\Skills.cs" />
     <Compile Include="Models\Core\Team.cs" />
@@ -434,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CoreContext\201509030355145_UpdateToInternalModels.resx">
       <DependentUpon>201509030355145_UpdateToInternalModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CoreContext\201509030521446_MakeMatchTeam3SitOptional.resx">
+      <DependentUpon>201509030521446_MakeMatchTeam3SitOptional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

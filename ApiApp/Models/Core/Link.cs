@@ -1,33 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
+using System.Runtime.Serialization;
 
 namespace ApiApp.Models.Core
 {
-    /// <summary>
-    /// Base class for links
-    /// </summary>
-    public abstract class Link
+    [Serializable]
+    public class SerializableDynamic : DynamicObject, ISerializable
     {
-        public string Rel { get; private set; }
-        public string Href { get; private set; }
-        public string Title { get; private set; }
+        private readonly Dictionary<string, object> members = new Dictionary<string, object>();
 
-        public Link(string relation, string href, string title = null)
+        public override bool TrySetMember(SetMemberBinder binder, object value)
         {
-            if (string.IsNullOrEmpty(relation))
-                throw new ArgumentNullException(nameof(relation));
-            if (string.IsNullOrEmpty(href))
-                throw new ArgumentNullException(nameof(href));
-
-            Rel = relation;
-            Href = href;
-            Title = title;
+            members[binder.Name] = value;
+            return true;
         }
-    }
 
-    public class GetLink : Link
-    {
-        public const string _Relation = "get";
-
-        public GetLink(string href, string title = null) : base (_Relation, href, title) { }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            foreach (var keyValuePair in members)
+            {
+                info.AddValue(keyValuePair.Key, keyValuePair.Value.ToString());
+            }
+        }
     }
 }

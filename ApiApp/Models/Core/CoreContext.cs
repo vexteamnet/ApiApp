@@ -35,6 +35,18 @@ namespace ApiApp.Models.Core
                 .HasMany(a => a.QualifiesFor)
                 .WithMany();
 
+            modelBuilder.Entity<Match>()
+                .HasOptional(m => m.Blue3);
+            
+            modelBuilder.Entity<Match>()
+                .HasOptional(m => m.BlueSit);
+
+            modelBuilder.Entity<Match>()
+                .HasOptional(m => m.Red3);
+
+            modelBuilder.Entity<Match>()
+                .HasOptional(m => m.RedSit);
+
             base.OnModelCreating(modelBuilder);
         }
     }
